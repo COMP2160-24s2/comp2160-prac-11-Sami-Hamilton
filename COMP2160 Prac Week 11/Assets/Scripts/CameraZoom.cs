@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Camera))]
 public class CameraZoom : MonoBehaviour
 {
-    [SerializeField] private float zoomRate = 0.1f;
+    [SerializeField] private float zoomRate = 1.1f;
     [SerializeField] private float minSize = 2f;
     [SerializeField] private float maxSize = 10f;
     [SerializeField] private float minField = 20f;
@@ -20,7 +20,17 @@ public class CameraZoom : MonoBehaviour
         camera = GetComponent<Camera>();
     }
 
-    private void ZoomIn()
+    void OnEnable()
+    {
+        zoomAction.Enable();
+    }
+
+    void OnDisable()
+    {
+        zoomAction.Disable();
+    }
+
+    private void ZoomIn(float mouseScroll)
     {
         if (camera.orthographic)
         {
@@ -49,10 +59,9 @@ public class CameraZoom : MonoBehaviour
     void Update()
     {
         float mouseScroll = zoomAction.ReadValue<float>();
-        Debug.Log(mouseScroll);
         if (mouseScroll > 0)
         {
-            ZoomIn();
+            ZoomIn(mouseScroll);
         }
         if (mouseScroll < 0)
         {

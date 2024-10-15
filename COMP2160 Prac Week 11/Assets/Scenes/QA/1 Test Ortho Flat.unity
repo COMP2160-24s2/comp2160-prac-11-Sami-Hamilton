@@ -807,6 +807,8 @@ GameObject:
   - component: {fileID: 2408856355099670849}
   - component: {fileID: 3387069130461659845}
   - component: {fileID: 3918152967393434438}
+  - component: {fileID: 7675371378090306039}
+  - component: {fileID: 7675371378090306040}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -829,6 +831,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &7675371378090306039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601777957755373507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33da37177a5d94b9aa8c03287f266c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomRate: 1.1
+  minSize: 2
+  maxSize: 10
+  minField: 20
+  maxField: 100
+--- !u!114 &7675371378090306040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601777957755373507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33da37177a5d94b9aa8c03287f266c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomRate: 1.1
+  minSize: 2
+  maxSize: 10
+  minField: 20
+  maxField: 100
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

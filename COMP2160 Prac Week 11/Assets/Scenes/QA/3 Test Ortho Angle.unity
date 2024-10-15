@@ -145,6 +145,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7485987256551808895, guid: b96044efa2ae54750ad24e39e1352865,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485987256551808895, guid: b96044efa2ae54750ad24e39e1352865,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7485987256551808895, guid: b96044efa2ae54750ad24e39e1352865,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8399291161501472776, guid: b96044efa2ae54750ad24e39e1352865,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -238,7 +253,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Test Perspective Camera Flat: \nMove the cross hair to different parts
+  m_text: "Test Orthographic Camera Flat: \nMove the cross hair to different parts
     of the screen and click.\n1. Check crosshair is always visible\n2. Check crosshair
     moves with mouse cursor.\n3. Check crosshair is displayed under the marble. \n4.
     Check visible target marker is dropped when mouse is clicked."
@@ -793,6 +808,7 @@ GameObject:
   - component: {fileID: 3387069130461659845}
   - component: {fileID: 3918152967393434438}
   - component: {fileID: 7675371378090306039}
+  - component: {fileID: 7675371378090306040}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -808,14 +824,31 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4601777957755373507}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 10, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!114 &7675371378090306039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4601777957755373507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33da37177a5d94b9aa8c03287f266c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomRate: 1.1
+  minSize: 2
+  maxSize: 10
+  minField: 20
+  maxField: 100
+--- !u!114 &7675371378090306040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

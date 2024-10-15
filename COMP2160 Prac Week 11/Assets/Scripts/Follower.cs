@@ -6,7 +6,8 @@ public class Follower : MonoBehaviour
 
     void LateUpdate()
     {
-        this.transform.position = target.position;
+        Vector3 newPos = new Vector3(target.position.x, this.transform.position.y, target.position.z);
+        this.transform.position = newPos;
     }
 
     void OnDrawGizmos()
