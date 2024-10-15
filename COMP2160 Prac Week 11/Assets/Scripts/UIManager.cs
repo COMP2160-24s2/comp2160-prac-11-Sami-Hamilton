@@ -20,6 +20,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform target;
 #endregion 
 
+#region Board
+    [SerializeField] private Transform board;
+    private Plane plane;
+#endregion
+
 #region Singleton
     static private UIManager instance;
     static public UIManager Instance
@@ -57,6 +62,8 @@ public class UIManager : MonoBehaviour
 
         Cursor.visible = false;
         target.gameObject.SetActive(false);
+
+        plane = new Plane(board.up, Vector3.zero);
     }
 
     void OnEnable()
@@ -81,9 +88,20 @@ public class UIManager : MonoBehaviour
     {
         Vector2 mousePos = mouseAction.ReadValue<Vector2>();
         //Debug.Log(mousePos);
+        Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
+        float boardDist;
+        plane.Raycast(mouseRay, out boardDist);
+        Vector3 crosshairPos = mouseRay.GetPoint(boardDist - 0.1f);
+        //Debug.Log(crosshairPos);
+        crosshair.position = crosshairPos;
+        
+
+        /*
+        //Previous Solution
         Vector3 crosshairCurrentPos = Camera.main.WorldToScreenPoint(crosshair.position);
         Vector3 crosshairNewPos = new Vector3(mousePos.x, mousePos.y, crosshairCurrentPos.z);
         crosshair.position = Camera.main.ScreenToWorldPoint(crosshairNewPos);
+        */
     }
 
     private void SelectTarget()

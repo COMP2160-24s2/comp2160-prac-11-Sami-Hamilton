@@ -160,6 +160,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -4.09
       objectReference: {fileID: 0}
+    - target: {fileID: 5450362575394769019, guid: b96044efa2ae54750ad24e39e1352865,
+        type: 3}
+      propertyPath: board
+      value: 
+      objectReference: {fileID: 1183061769}
     - target: {fileID: 7485987256551808895, guid: b96044efa2ae54750ad24e39e1352865,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -539,6 +544,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 184f488bf1486423baadff9ee0a0bade, type: 3}
+--- !u!4 &1183061769 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6737843619596989291, guid: 184f488bf1486423baadff9ee0a0bade,
+    type: 3}
+  m_PrefabInstance: {fileID: 1183061768}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1780764705
 GameObject:
   m_ObjectHideFlags: 0
