@@ -10,6 +10,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using WordsOnPlay.Utils;
 
 // note this has to run earlier than other classes which subscribe to the TargetSelected event
 [DefaultExecutionOrder(-100)]
@@ -20,9 +21,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Transform target;
 #endregion 
 
-#region Board
+#region Paramaters and Attributes
     [SerializeField] private Transform board;
     private Plane plane;
+    [SerializeField] private float sensitivity = 5f;
+    [SerializeField] private bool useMouseDelta = true;
 #endregion
 
 #region Singleton
@@ -86,21 +89,53 @@ public class UIManager : MonoBehaviour
 
     private void MoveCrosshair() 
     {
-        Vector2 mousePos = mouseAction.ReadValue<Vector2>();
-        //Debug.Log(mousePos);
-        Ray mouseRay = Camera.main.ScreenPointToRay(mousePos);
-        float boardDist;
-        plane.Raycast(mouseRay, out boardDist);
-        Vector3 crosshairPos = mouseRay.GetPoint(boardDist - 0.1f);
-        //Debug.Log(crosshairPos);
-        crosshair.position = crosshairPos;
+        //Step 5 Solution
+        Camera camera = Camera.main;
+
+        if (useMouseDelta)
+        {
+            Vector2 mouseDelta = deltaAction.ReadValue<Vector2>();
+            Vector3 crosshairCurrentPos = camera.WorldToScreenPoint(crosshair.position);
+            Vector3 crosshairNewPos = crosshairCurrentPos + ((Vector3)mouseDelta * sensitivity);
+            
+            Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            crosshairNewPos = screenRect.Clamp(crosshairNewPos);
+            
+            crosshair.position = camera.ScreenToWorldPoint(crosshairNewPos);
+        } else 
+        {
+            Vector2 mousePos = mouseAction.ReadValue<Vector2>();
+            Ray mouseRay = camera.ScreenPointToRay(mousePos);
+            float boardDist;
+            plane.Raycast(mouseRay, out boardDist);
+            Vector3 crosshairPos = mouseRay.GetPoint(boardDist - 0.1f);
+            crosshair.position = crosshairPos;
+        }
+        
+
+        
+        
         
 
         /*
-        //Previous Solution
-        Vector3 crosshairCurrentPos = Camera.main.WorldToScreenPoint(crosshair.position);
+        //Step 1 Solution
+        Camera camera = Camera.main;
+        Vector2 mousePos = mouseAction.ReadValue<Vector2>();
+        //Debug.Log(mousePos);
+        Vector3 crosshairCurrentPos = camera.WorldToScreenPoint(crosshair.position);
         Vector3 crosshairNewPos = new Vector3(mousePos.x, mousePos.y, crosshairCurrentPos.z);
-        crosshair.position = Camera.main.ScreenToWorldPoint(crosshairNewPos);
+        crosshair.position = camera.ScreenToWorldPoint(crosshairNewPos);
+        */
+
+        /*
+        //Step 4 Solution
+        Camera camera = Camera.main;
+        Vector2 mousePos = mouseAction.ReadValue<Vector2>();
+        Ray mouseRay = camera.ScreenPointToRay(mousePos);
+        float boardDist;
+        plane.Raycast(mouseRay, out boardDist);
+        Vector3 crosshairPos = mouseRay.GetPoint(boardDist - 0.1f);
+        crosshair.position = crosshairPos;
         */
     }
 
