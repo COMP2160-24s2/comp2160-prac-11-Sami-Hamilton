@@ -96,21 +96,25 @@ public class UIManager : MonoBehaviour
         {
             Vector2 mouseDelta = deltaAction.ReadValue<Vector2>();
             Vector3 crosshairCurrentPos = camera.WorldToScreenPoint(crosshair.position);
-            Vector3 crosshairNewPos = crosshairCurrentPos + ((Vector3)mouseDelta * sensitivity);
-            
             Rect screenRect = new Rect(0, 0, Screen.width, Screen.height);
+            Vector3 crosshairNewPos = crosshairCurrentPos + ((Vector3)mouseDelta * sensitivity);
             crosshairNewPos = screenRect.Clamp(crosshairNewPos);
-            
-            crosshair.position = camera.ScreenToWorldPoint(crosshairNewPos);
+            Ray crosshairRay = camera.ScreenPointToRay(crosshairNewPos);
+            float boardDist;
+            plane.Raycast(crosshairRay, out boardDist);
+            Vector3 crosshairPos = crosshairRay.GetPoint(boardDist - 0.1f);
+            crosshair.position = crosshairPos;
         } else 
         {
             Vector2 mousePos = mouseAction.ReadValue<Vector2>();
-            Ray mouseRay = camera.ScreenPointToRay(mousePos);
+            Ray crosshairRay = camera.ScreenPointToRay(mousePos);
             float boardDist;
-            plane.Raycast(mouseRay, out boardDist);
-            Vector3 crosshairPos = mouseRay.GetPoint(boardDist - 0.1f);
+            plane.Raycast(crosshairRay, out boardDist);
+            Vector3 crosshairPos = crosshairRay.GetPoint(boardDist - 0.1f);
             crosshair.position = crosshairPos;
         }
+
+        
         
 
         
